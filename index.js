@@ -53,4 +53,4 @@ function myCity(event, theCityValue = "Nairobi") {
 let myValue = document.querySelector("#city");
 myValue.addEventListener("submit", myCity);
 document.addEventListener("DOMContentLoaded", function () {
-  myCity(null, "Nairobi")});
+  myCity(null, "Thika")});
