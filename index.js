@@ -32,16 +32,18 @@ function currentWeather(response) {
   actualWind.innerHTML = `${response.data.wind.speed.toFixed(1)}m/s`;
   let actualExplanation = document.querySelector("#explanation");
   actualExplanation.innerHTML = response.data.condition.description;
+  let imageIcon = document.querySelector(".current-temperature-icon");
+  imageIcon.innerHTML = `<img src="${response.data.condition.icon_url}">`
+
   
 }
-function myCity(event) {
-  event.preventDefault();
-  let theCityValue = document.querySelector(".search-input").value.trim();
-  let theCityValueTwo = document.querySelector("#current-city");
+function myCity(event, theCityValue = "Nairobi") {
+   if (event) event.preventDefault();
 
-  if (theCityValue) {
-    theCityValueTwo.innerHTML = theCityValue;
-  }
+   theCityValue = document.querySelector(".search-input").value.trim()|| theCityValue;
+  let theCityValueTwo = document.querySelector("#current-city");
+  theCityValueTwo.innerHTML = theCityValue.charAt(0).toUpperCase() + theCityValue.slice(1);
+
   let apiKey = "2284b36a4b14fat02fd5f23o7025e19a";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${theCityValue}&key=${apiKey}&units=metric`;
 
@@ -50,3 +52,5 @@ function myCity(event) {
 
 let myValue = document.querySelector("#city");
 myValue.addEventListener("submit", myCity);
+document.addEventListener("DOMContentLoaded", function () {
+  myCity(null, "Nairobi")});
